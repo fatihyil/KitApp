@@ -1,0 +1,146 @@
+﻿@model BookRelatedDetailVM
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 h-100 text-center">
+            <img class="my-3 p-4 max-height  border border-dark" src="~/Images/Books/@Model.BookImgUrl" alt="">
+        </div>
+
+        <div class="col-md-4">
+            <span class="d-none" id="BookId">@Model.Id</span>
+            <h3 class="my-3 font-weight-bold " id="BookTitle">@Model.Title</h3>
+            <p>@Model.Description</p>
+            <h3 class="my-3 font-weight-bold">Kitap Bilgileri</h3>
+            <ul>
+                <li>Yazar : @Model.AuthorName</li>
+                <li>Yayıncı : @Model.PublisherName</li>
+                <li>Kategori : @Model.CategoryName</li>
+                <li>Sayfa Sayısı : @Model.BookPages</li>
+            </ul>
+            <hr />
+            <div class="d-flex justify-content-between">
+                <span class="d-none" id="BookPrice">@Model.Price</span>
+                <span class="btn btn-outline-success font-weight-bold" >@Model.Price <small>TL</small></span>
+                <div class="d-flex">
+                    <div><button class="btn btn-danger mr-1" id="count-minus"><i class="fas fa-minus"></i></button></div>
+                    <div><button class="btn btn-info mr-1" id="book-count"></button></div>
+                    <div><button class="btn btn-success" id="count-plus"><i class="fas fa-plus"></i></button></div>
+                </div>
+                <a href="#" class="btn btn-outline-dark font-weight-bolder" id="Shopping-Card">Sepete Ekle</a>
+            </div>
+        </div>
+    </div>
+    <h3 class="my-5 text-center">Kategorinin İlgi Çeken Kitapları</h3>
+
+    <div class="row">
+        @foreach (var item in Model.books)
+        {
+            <div class="col-md-3 col-sm-6 mb-4 text-center">
+                <a class="img-height" href="/Home/Detail/@item.Id">
+                    <img class="img-fluid related-Img" src="~/Images/Books/@item.BookImgUrl" alt="">
+                </a>
+                <div class="text-center font-weight-bold">
+                    <p>@item.Title</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="alert alert-danger d-none">
+        <p id="UserId">@TempData["User"]</p>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+
+    </div>
+</div>
+<script src="~/js/Cookie.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#book-count").text("1");
+        $("#count-plus").click(function () {
+            var count = $("#book-count").text();
+            count++;
+            $("#book-count").text(count);
+        });
+        $("#count-minus").click(function () {
+            var count = $("#book-count").text();
+            if (count == 1) {
+                count = 1;
+            }
+            else {
+                count--;
+            }
+            $("#book-count").text(count);
+        });
+
+
+
+        $("#Shopping-Card").click(function () {
+
+            var User = $("#UserId").text();
+
+            if (User == "") {
+                var html =
+                    `
+                 <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title">Bilgilendirme</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                       </button>
+                     </div>
+                     <div class="modal-body">
+                       <p class="alert alert-danger">Sepete Ürün Eklemeniz için önce giriş yapmalısınız !</p>
+                     </div>
+                   </div>
+                 </div>
+                 `;
+                $("#modal").html(html);
+                $('#modal').modal('show');
+            }
+            else {
+
+                //debugger
+                var card = {
+                    UserId: $("#UserId").text(),
+                    BookId: $("#BookId").text(),
+                    Title: $("#BookTitle").text(),
+                    Price: $("#BookPrice").text(),
+                    Quantity: $("#book-count").text()
+                };
+                //setCookie(User, JSON.stringify(data));
+                $.ajax({
+                    type: "POST",
+                    url: "/Shopping/AddShopCard",
+                    data: card,
+                    success: function () {
+                        var html =
+                            `
+                             <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                   <h5 class="modal-title">Bilgilendirme</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                 <div class="modal-body">
+                                   <p class="alert alert-success">Kitabınız Sepete Eklenmiştir.</p>
+                                 </div>
+                               </div>
+                             </div>
+                        `;
+                        $("#modal").html(html);
+                        $('#modal').modal('show');
+                    }
+                });
+            }
+        });
+    });
+</script>
+

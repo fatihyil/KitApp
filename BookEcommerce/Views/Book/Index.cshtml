@@ -1,0 +1,72 @@
+﻿@model BookCategoryVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-3 mb-4">
+            <h5>Kategoriler</h5>
+            <div class="mb-4">
+                <select class="form-control">
+                    @foreach (var item in Model.Categories)
+                    {
+                        <option value="value"> @item.Name</option>
+                    }
+                </select>
+            </div>
+            <h5>Yazarlar</h5>
+            <div class="mb-4">
+                <select class="form-control">
+                    @foreach (var item in Model.Authors)
+                    {
+                        <option value="value">@item.FullName</option>
+                    }
+                </select>
+            </div>
+            <h5>Yayın Evleri</h5>
+            <div class="mb-4">
+                <select class="form-control">
+                    @foreach (var item in Model.Publishers)
+                    {
+                        <option value="value">
+                            @item.Name
+                        </option>
+                    }
+                </select>
+            </div>
+            <div >
+                <a href="#" class="btn btn-primary w-100">Filtrele</a>
+            </div>
+        </div>
+        <div class="col-lg-9 mb-4">
+            <div class="row">
+                @foreach (var item in Model.Books)
+                {
+                    <div class="col-lg-4 col-sm-6 portfolio-item">
+                        <div class="card h-100 border border-dark">
+                            <a href="/Home/Detail/@item.Id" class="img-link img-height text-center"><img class="card-img-top" src="~/Images/Books/@item.BookImgUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">
+                                    <a href="/Home/Detail/@item.Id">@item.Title</a>
+                                </h4>
+                                <a href="@item.AuthorId" class="card-text d-block text-center">@item.AuthorName</a>
+                                <a href="@item.PublisherId" class="card-text d-block text-center">@item.PublisherName</a>
+                                <hr />
+                                <span class="card-text d-block text-center font-weight-bold">Kategori</span>
+                                <a href="@item.CategoryId" class="card-text d-block text-center">@item.CategoryName</a>
+                            </div>
+                            <div class="card-footer bg-dark text-light">
+                                <p class="card-text d-block text-center font-weight-bolder">@item.Price TL</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

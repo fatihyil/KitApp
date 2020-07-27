@@ -1,0 +1,73 @@
+﻿@model List<BooksVM>
+@{
+    ViewData["Title"] = "Home Page";
+}
+ 
+
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url(Images/BackImageLibrary.jpg)">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Rufus Choote</h3>
+                    <p>Kitap, tek ölümsüzlüktür.</p>
+
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url(Images/library2.jpg) ">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Didorus Siculus</h3>
+                    <p>Kitaplar, aklın tedavi yerleridir.</p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url(Images/backImageClock.jpg) ">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Orhan Burian</h3>
+                    <p>Kitap, imbikten süzülmüş hayattır.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="container">
+        <h1 class="text-center text-dark m-4">Haftanın Kitapları</h1>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-sm-6 portfolio-item">
+                    <div class="card h-100 border border-dark">
+                        <a href="/Home/Detail/@item.Id" class="img-link img-height text-center"><img class="card-img-top" src="~/Images/Books/@item.BookImgUrl" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="/Home/Detail/@item.Id">@item.Title</a>
+                            </h4>
+                            <a href="@item.AuthorId" class="card-text d-block text-center">@item.AuthorName</a>
+                            <a href="@item.PublisherId" class="card-text d-block text-center">@item.PublisherName</a>
+                            <hr />
+                            <span class="card-text d-block text-center font-weight-bold">Kategori</span>
+                            <a href="@item.CategoryId" class="card-text d-block text-center">@item.CategoryName</a>
+                        </div>
+                        <div class="card-footer bg-dark text-light">
+                            <p class="card-text d-block text-center font-weight-bolder">@item.Price TL</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</header>

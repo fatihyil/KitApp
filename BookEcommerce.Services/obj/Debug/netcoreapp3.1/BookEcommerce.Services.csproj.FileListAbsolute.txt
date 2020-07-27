@@ -1,0 +1,12 @@
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\bin\Debug\netcoreapp3.1\BookEcommerce.Services.deps.json
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\bin\Debug\netcoreapp3.1\BookEcommerce.Services.dll
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\bin\Debug\netcoreapp3.1\BookEcommerce.Services.pdb
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\bin\Debug\netcoreapp3.1\BookEcommerce.Data.dll
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\bin\Debug\netcoreapp3.1\BookEcommerce.Data.pdb
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.csprojAssemblyReference.cache
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.AssemblyInfoInputs.cache
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.AssemblyInfo.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.csproj.CoreCompileInputs.cache
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.csproj.CopyComplete
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.dll
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Services\obj\Debug\netcoreapp3.1\BookEcommerce.Services.pdb

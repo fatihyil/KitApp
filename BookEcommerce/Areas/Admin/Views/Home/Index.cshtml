@@ -1,0 +1,29 @@
+﻿@model BookEcommerce.Areas.Admin.Models.MainPageVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <h1 class="text-center">Sistem Bilgileri</h1>
+<div class="container mt-5">
+    
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Toplam Kitap Sayısı
+            <span class="badge badge-primary badge-pill">@Model.BookCount</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Toplam Yazar Sayısı
+            <span class="badge badge-primary badge-pill">@Model.AuthorCount</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Toplam Yayınevi Sayısı
+            <span class="badge badge-primary badge-pill">@Model.PublisherCount</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Toplam Sipariş Sayısı
+            <span class="badge badge-primary badge-pill">@Model.OrderCount</span>
+        </li>
+    </ul>
+</div>
+

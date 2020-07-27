@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BookEcommerce.Data.Entities
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+        <ul class="navbar-nav">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a class="nav-link " asp-area="" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" asp-controller="Account" asp-action="LogOut">
+                        <button type="submit" class="nav-link btn btn-link ">Logout</button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                </li>
+            }
+        </ul>

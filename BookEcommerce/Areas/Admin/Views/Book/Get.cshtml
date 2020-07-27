@@ -1,0 +1,36 @@
+﻿@model BookEcommerce.Areas.Admin.Models.AdminBookDetailVM
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="container">
+        <div class="card h-100 border border-dark mt-5">
+            <a href="Admin/Book/Detail/@Model.Id" class="img-link img-height text-center"> <img class="card-img-top" src="~/Images/Books/@Model.BookImageUrl" alt="Card image cap"></a>
+            <hr />
+            <div class="card-body">
+                <h5 class="card-title">@Model.Title</h5>
+                <p class="card-text">@Model.Description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Sayfa Sayısı :</strong>@Model.BookPages</li>
+                <li class="list-group-item"><strong>Fiyatı :</strong>@Model.Price</li>
+
+            </ul>
+            <div class="card-body">
+                <div>
+                    <strong>Kategori :</strong>
+                    <a href="#" class="card-link">@Model.CategoryName</a>
+                </div>
+                <div>
+                    <strong>Yazar :</strong>
+                    <a href="#" class="card-link">@Model.AuthorName</a>
+                </div>
+                <div>
+                    <strong>Yayınevi :</strong>
+                    <a href="#" class="card-link">@Model.PublisherName</a>
+                </div>
+            </div>
+        </div>
+    </div>
+

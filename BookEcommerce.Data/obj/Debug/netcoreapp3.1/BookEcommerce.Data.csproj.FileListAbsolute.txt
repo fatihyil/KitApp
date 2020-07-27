@@ -1,0 +1,9 @@
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\bin\Debug\netcoreapp3.1\BookEcommerce.Data.deps.json
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\bin\Debug\netcoreapp3.1\BookEcommerce.Data.dll
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\obj\Debug\netcoreapp3.1\BookEcommerce.Data.csprojAssemblyReference.cache
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\obj\Debug\netcoreapp3.1\BookEcommerce.Data.AssemblyInfoInputs.cache
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\obj\Debug\netcoreapp3.1\BookEcommerce.Data.AssemblyInfo.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\bin\Debug\netcoreapp3.1\BookEcommerce.Data.pdb
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\obj\Debug\netcoreapp3.1\BookEcommerce.Data.dll
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\obj\Debug\netcoreapp3.1\BookEcommerce.Data.pdb
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce.Data\obj\Debug\netcoreapp3.1\BookEcommerce.Data.csproj.CoreCompileInputs.cache

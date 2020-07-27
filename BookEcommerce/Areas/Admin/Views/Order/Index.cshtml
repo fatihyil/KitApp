@@ -1,0 +1,65 @@
+﻿@model List<BookEcommerce.Areas.Admin.Models.AdminOrdersVM>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@if (TempData["EmptyOrder"] != null)
+{
+    <div class="mt-5 alert alert-danger text-center">
+        <p>@TempData["EmptyOrder"]</p>
+    </div>
+}
+<div class="text-center font-weight-bold mt-2" >
+    <h1>Siparişler</h1>
+
+</div>
+<div class="mt-4">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.UserName Siparişi</h5>
+                        <p class="card-text">Sipariş detayı</p>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sipriş Numarası</th>
+                                    <th scope="col">Kitap Adı</th>
+                                    <th scope="col">Kitap Fiyatı</th>
+                                    <th scope="col">Kitap Adeti</th>
+                                    <th>Kitap Detayı</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detail in item.OrderDetailVMs)
+                                {
+                                    <tr>
+                                        <th scope="row">@detail.Id</th>
+                                        <td>@detail.Title</td>
+                                        <td>@detail.Price</td>
+                                        <td>@detail.Quantity</td>
+                                        <td>
+                                            <a class="btn btn-info ml-1" asp-area="Admin" asp-controller="Book" asp-action="Get" asp-route-id="@detail.BookId"><i class="fas fa-info-circle"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
+                    <div class="card-body">
+                        <strong>Toplam Fiyat :</strong> <p class="card-text">@item.TotalPrice <small>TL</small></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+   
+</div>

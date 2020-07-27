@@ -1,0 +1,133 @@
+﻿@model ShoppingPageVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container ">
+    <h2 class="text-center mt-5 mb-3">Sepet İşlemleri</h2>
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="Orders">
+
+                @if (TempData["IslemBasarili"] == null)
+                {
+                    if (TempData["EmptyBox"] != null)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="alert alert-danger">@TempData["EmptyBox"]</p>
+                            </div>
+                        </div>
+                    }
+                }
+
+
+                @if (TempData["IslemBasarili"] != null)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="alert alert-success">@TempData["IslemBasarili"]</p>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var item in Model.shoppingCards)
+                {
+                    <div class="card mb-4" id="Card-@item.Id">
+                        <div class="card-header">
+                            @item.Title
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <div>
+                                        <span class="font-weight-bold">Fiyat :</span>
+                                        <span class="card-title" id="Price-@item.Id">@item.Price <small>TL</small></span>
+                                    </div>
+                                    <div>
+                                        <span class="font-weight-bold">Adet :</span>
+                                        <span class="card-text">@item.Quantity</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-danger mr-auto" id="deleteCard-@item.Id">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Sipariş Tamamlama</h5>
+                    <span class="card-text font-weight-bold">Toplam Fiyat : </span>
+                    <span class="card-text" id="totalprice">@Model.SumPrice</span>
+                </div>
+                <div class="p-3 d-flex justify-content-end">
+                    <a href="/Order/Add" class="btn btn-primary">Satın Al</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="alert alert-danger d-none">
+    <p id="UserId">@TempData["User"]</p>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modal">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("[id^=deleteCard-]").click(function () {
+
+            var id = $(this).attr("id").split("-")[1];
+            $.ajax({
+                url: "/Shopping/DeleteShopCard/" + id,
+                type: "GET",
+                success: (function () {
+                    var html =
+                        `
+                             <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                   <h5 class="modal-title">Bilgilendirme</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                 <div class="modal-body">
+                                   <p class="alert alert-success">Kitabınız Sepete Silinmiştir.</p>
+                                 </div>
+                               </div>
+                             </div>
+                        `;
+                    $("#modal").html(html);
+                    $('#modal').modal('show');
+                    var cardid = "Card-" + id;
+                    $("#" + cardid).addClass("d-none");
+                    var totalprice = $("#totalprice").text();
+                    var priceid = "Price-" + id;
+                    var pricetext = $("#" + priceid).text();
+                    var price = pricetext.split(" ")[0];
+                    var equalprice = parseInt(totalprice) - parseInt(price);
+                    debugger
+                    $("#totalprice").text(function () {
+                        return equalprice;
+                    });
+                })
+            })
+
+        });
+    });
+
+
+</script>
