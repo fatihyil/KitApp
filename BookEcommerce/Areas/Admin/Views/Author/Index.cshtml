@@ -1,0 +1,47 @@
+﻿@model List<BookEcommerce.Areas.Admin.Models.AdminAuthorVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>Yazar Listesi</h1>
+        </div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Yazar Adı</th>
+                    <th scope="col">Detay</th>
+                    <th scope="col">Düzenle</th>
+                    @*<th scope="col">Sil</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>@item.FullName</td>                      
+                        <td>
+                            <a class="btn btn-info ml-1" asp-area="Admin" asp-controller="Author" asp-action="Get" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-primary ml-1" asp-area="Admin" asp-controller="Author" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+
+                        </td>
+                        @*<td>
+                            <a class="btn btn-danger ml-1" asp-area="Admin" asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                        </td>*@
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-success" href="/Admin/Book/Add">Yeni Yazar Ekle</a>
+        </div>
+    </div>
