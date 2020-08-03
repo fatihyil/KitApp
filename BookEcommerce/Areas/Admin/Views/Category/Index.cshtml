@@ -1,0 +1,44 @@
+﻿@model List<BookEcommerce.Areas.Admin.Models.AdminCategoryVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Kategori Listesi</h1>
+    </div>
+    @if (TempData["EmptyCategory"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>@TempData["EmptyCategory"]</p>
+        </div>
+    }
+    else
+    {
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Kategori Adı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="#">@item.Name</a></td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+    }
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-success" href="/Admin/Category/Add">Yeni Kategori Ekle</a>
+    </div>
+</div>

@@ -19,5 +19,11 @@ namespace BookEcommerce.Services.Services
         {
             return _context.Category.ToList();
         }
+
+        public void Add(Category entity)
+        {
+            _context.Category.Add(entity);
+            _context.SaveChanges();
+        }
     }
 }

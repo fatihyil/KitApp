@@ -51,39 +51,7 @@ namespace BookEcommerce.Areas.Admin.Controllers
             var publisherEntities = _publisherService.GetPublishers();
             var authorEntities = _authorService.GetAuthors();
             var model = new AdminBookAddVM();
-            //var categoryList = new List<AdminCategoryVM>();
-            //var authorList = new List<AdminAuthorVM>();
-            //var publisherList = new List<AdminPublisherVM>();
-
-            //foreach (var item in categoryEntities)
-            //{
-            //    categoryList.Add(new AdminCategoryVM()
-            //    {
-            //        Id = item.Id,
-            //        Name = item.Name
-            //    });
-            //}
-            //model.adminCategories = categoryList;
-
-            //foreach (var item in publisherEntities)
-            //{
-            //    publisherList.Add(new AdminPublisherVM()
-            //    {
-            //        Id = item.Id,
-            //        Name = item.Name
-            //    });
-            //}
-            //model.adminPublishers = publisherList;
-
-            //foreach (var item in authorEntities)
-            //{
-            //    authorList.Add(new AdminAuthorVM()
-            //    {
-            //        Id = item.Id,
-            //        FullName = item.FirstName + " " + item.LastName
-            //    });
-            //}
-            //model.adminAuthors = authorList;
+           
 
             List<SelectListItem> categoryList = new List<SelectListItem>();
             foreach (var item in categoryEntities)
@@ -122,19 +90,62 @@ namespace BookEcommerce.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(AdminBookAddVM model)
         {
-            var entity = new Book();
-            entity.Price = model.Price;
-            entity.Title = model.Title;
-            entity.StockCount = model.StockCount;
-            entity.PublisherId = model.PublisherId;
-            entity.AuthorId = model.AuthorId;
-            entity.CategoryId = model.CategoryId;
-            entity.BookImageUrl = "example.jpg";
-            entity.Description = model.Description;
-            entity.BookPages = model.BookPages;
-            _bookService.Add(entity);
-            TempData["IslemBasarılı"] = "Kitap Eklendi !";
-            return RedirectToAction("Add");
+            if (ModelState.IsValid)
+            {
+                var entity = new Book();
+                entity.Price = model.Price;
+                entity.Title = model.Title;
+                entity.StockCount = model.StockCount;
+                entity.PublisherId = model.PublisherId;
+                entity.AuthorId = model.AuthorId;
+                entity.CategoryId = model.CategoryId;
+                entity.BookImageUrl = "example.jpg";
+                entity.Description = model.Description;
+                entity.BookPages = model.BookPages;
+                _bookService.Add(entity);
+                TempData["IslemBasarılı"] = "Kitap Eklendi !";
+                return RedirectToAction("Add");
+            }
+            else
+            {
+                TempData["IslemBasarısız"] = "Kitap Eklenmedi !";
+                var categoryEntities = _categoryService.GetCategories();
+                var publisherEntities = _publisherService.GetPublishers();
+                var authorEntities = _authorService.GetAuthors();
+                List<SelectListItem> categoryList = new List<SelectListItem>();
+                foreach (var item in categoryEntities)
+                {
+                    categoryList.Add(new SelectListItem()
+                    {
+                        Text = item.Name,
+                        Value = item.Id.ToString()
+                    });
+                }
+                ViewBag.CategoryList = categoryList;
+
+                List<SelectListItem> publisherList = new List<SelectListItem>();
+                foreach (var item in publisherEntities)
+                {
+                    publisherList.Add(new SelectListItem()
+                    {
+                        Text = item.Name,
+                        Value = item.Id.ToString()
+                    });
+                }
+                ViewBag.PublisherList = publisherList;
+
+                List<SelectListItem> authorList = new List<SelectListItem>();
+                foreach (var item in authorEntities)
+                {
+                    authorList.Add(new SelectListItem()
+                    {
+                        Text = item.FirstName + " " + item.LastName,
+                        Value = item.Id.ToString()
+                    });
+                }
+                ViewBag.AuthorList = authorList;
+                return View(model);
+            }
         }
         public IActionResult Get(int id)
         {

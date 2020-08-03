@@ -19,5 +19,11 @@ namespace BookEcommerce.Services.Services
         {
             return _context.Author.ToList();
         }
+
+        public void Add(Author author)
+        {
+            _context.Author.Add(author);
+            _context.SaveChanges();
+        }
     }
 }

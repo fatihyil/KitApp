@@ -444,3 +444,8 @@ C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor
 C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Book\Index.cshtml.g.cs
 C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Book\Add.cshtml.g.cs
 C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Author\Index.cshtml.g.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Author\Add.cshtml.g.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Publisher\Index.cshtml.g.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Publisher\Add.cshtml.g.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Index.cshtml.g.cs
+C:\Users\Fatih\Desktop\BookEcommerce\BookEcommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Add.cshtml.g.cs

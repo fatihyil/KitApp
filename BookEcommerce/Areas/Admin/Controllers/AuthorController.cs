@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BookEcommerce.Areas.Admin.Models;
+using BookEcommerce.Data.Entities;
 using BookEcommerce.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,26 @@ namespace BookEcommerce.Areas.Admin.Controllers
                 });
             }
             return View(model);
+        }
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(AdminAuthorAddVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new Author();
+                entity.FirstName = model.Name;
+                entity.LastName = model.Surname;
+                _authorService.Add(entity);
+                return RedirectToAction("Add");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }
